@@ -1,0 +1,32 @@
+{
+  "name": "cfp",
+  "version": "1.0.0",
+  "description": "Code Format Plugin",
+  "main": "index.js",
+  "engines": {
+    "node": ">= 10.13.0 "
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/k2oc/CFP.git"
+  },
+  "keywords": [
+    "vue",
+    "format",
+    "plugin"
+  ],
+  "author": "onlycl",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/k2oc/CFP/issues"
+  },
+  "homepage": "https://github.com/k2oc/CFP#readme",
+  "devDependencies": {
+    "@prettier/plugin-pug": "^1.13.5",
+    "prettier": "2.2.1"
+  },
+  "dependencies": {}
+}
