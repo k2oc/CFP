@@ -13,6 +13,10 @@ const rwFile = require("../libs/rwFile")
 const loop = require("../libs/loop")
 const minimist = require('minimist')
 const chalk = require('chalk')
+/**
+ * @param -s 需要格式化文件路径 
+ * @param -p  prettier配置文件 暂支持 json
+ */
 program
 .option("-s")
 .option("-p")
@@ -41,6 +45,12 @@ if($path){
 }else{
     console.log(chalk.red("path error"+ $path))
 }
+
+if(options.p){
+
+}
+
+
 console.log(chalk.green("Complete..."))
 
 // console.log(a)

@@ -2,6 +2,16 @@
 
 [prettier](https://prettier.bootcss.com)
 
+> Ready
+```shell
+npm i CFP -D 
+```
+> Excute
+```
+CFP -s ./src -p ./prettier.json
+```
+
+
 > Polyfill
 
 https://www.admin5.com/article/20201116/975806.shtml
