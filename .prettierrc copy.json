@@ -1,5 +1,5 @@
+
 {
-  "pugAttributeSeparator":"always",
     "arrowParens": "always",
     "bracketSpacing": true,
     "embeddedLanguageFormatting": "auto",

@@ -1,4 +1,2 @@
-const _ = require('lodash');
-module.exports = function (program) {
-
-}
+const _ = require("lodash");
+module.exports = function (program) {};

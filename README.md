@@ -18,7 +18,6 @@ https://vuejs.github.io/vetur/guide/formatting.html#formatters
 - Pug -> @prettier/plugin-pug
 - Jade
 
-
 > 执行命令
 
 1.Format all
@@ -27,19 +26,19 @@ https://vuejs.github.io/vetur/guide/formatting.html#formatters
 
 2.Format
 
-
-
 > 解决冲突
 
 1.解决 Prettier 和 tslint 冲突
 
 [tslint-config-alloy](https://github.com/AlloyTeam/tslint-config-alloy)
+
 ```shell
 npm install --save-dev tslint typescript tslint-config-alloy
 npm install --save-dev prettier tslint-config-prettier
 ```
 
- tslint.config
+tslint.config
+
 ```JavaScript
 // tslint.config 的 extends 添加 tslint-config-prettier
 {
@@ -59,6 +58,7 @@ npm install --save-dev prettier tslint-config-prettier
 ```
 
 prettier.config.js or .prettierrc.js
+
 ```JavaScript
 module.exports = {
     // 一行最多 100 字符
