@@ -13,6 +13,7 @@ const rwFile = require("../libs/rwFile")
 const loop = require("../libs/loop")
 const minimist = require('minimist')
 const chalk = require('chalk')
+const runLog = require('../libs/runLog')
 /**
  * @param -s 需要格式化文件路径 
  * @param -p  prettier配置文件 暂支持 json
@@ -39,7 +40,9 @@ if($path){
         try {
             await rwFile(file)
         } catch (error) {
+            runLog(error);
             console.log(chalk.red(error))
+
         }
     })
 }else{
