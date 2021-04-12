@@ -16,20 +16,23 @@ const chalk = require('chalk')
 const runLog = require('../libs/runLog')
 /**
  * @param -s 需要格式化文件路径 
- * @param -p  prettier配置文件 暂支持 json
+ * @param -p  prettier配置文件 暂支持 json  
  */
 program
 .option("-s")
-.option("-p")   // 默认读取 -> prettier.resolveConfig(filePath).then((options)    
+.option("-p")     
 // .option("-ig , --ingore")
 .parse(process.argv);
 
 let $1 = path.resolve ( process.cwd("./") )
 let $2 = minimist(process.argv.slice(2))
 const options = program.opts();
-let $path = ''
+let $path = '' , $config = {};
 if(options.s){
     $path =  path.join( path.resolve($1) ,$2["s"])
+}
+if(options.p){
+    $config = Object.assign($2["p"])
 }
 if($path){
     if(loop($path).length == 0 ){
@@ -38,7 +41,7 @@ if($path){
     }
     _.forEach( loop($path) ,async function(file) {
         try {
-            await rwFile(file)
+            await rwFile(file , $config )
         } catch (error) {
             runLog(error);
             console.log(chalk.red(error))

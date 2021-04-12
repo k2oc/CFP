@@ -10,14 +10,18 @@ const preConfig = require("../.prettierrc.json")
 const checkFile = require("./checkFile")
 const chalk = require("chalk")
 
-const rwFile = function(filePath = ""){
+const rwFile = function(filePath = "", config ={}){
     const text = fs.readFileSync(filePath, "utf8");
     if(checkFile(text)){
       console.log(chalk.bgGray(filePath + " format complete "))
     }else{
       console.log(chalk.bgGreen(filePath + " start format  "))
       prettier.resolveConfig(filePath).then((options) => {
-        const formatted = prettier.format(text, _.merge(preConfig,options) );
+        // options -> prettier 默认自动读取 .prettierrc.json  .prettierrc.xml ...  
+        // 强制接入，读取用户自定义信息 
+        // 若不需要, config 替换为 options 
+        // const formatted = prettier.format(text, _.merge(preConfig,options) );
+        const formatted = prettier.format(text, _.merge(preConfig,config) );
         fs.writeFileSync(filePath, formatted )  
       });
     }
