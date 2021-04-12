@@ -20,14 +20,14 @@ const runLog = require('../libs/runLog')
  */
 program
 .option("-s")
-.option("-p")
+.option("-p")   // 默认读取 -> prettier.resolveConfig(filePath).then((options)    
 // .option("-ig , --ingore")
 .parse(process.argv);
 
 let $1 = path.resolve ( process.cwd("./") )
 let $2 = minimist(process.argv.slice(2))
 const options = program.opts();
-let $path = '';
+let $path = ''
 if(options.s){
     $path =  path.join( path.resolve($1) ,$2["s"])
 }
@@ -49,9 +49,7 @@ if($path){
     console.log(chalk.red("path error"+ $path))
 }
 
-if(options.p){
 
-}
 
 
 console.log(chalk.green("Complete..."))

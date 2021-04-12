@@ -16,23 +16,16 @@ const chalk = require('chalk')
 const runLog = function( logs = "", type = 'error'){
     let $type = type == 'error' ? errorLog : outLog 
     let $path = path.join(path.resolve ( process.cwd("../../")) , $type ) 
-    console.log ($path) 
     if(fs.existsSync($path)){
-        writeLog($path ,logs )
+        writeLog($path , logs )
     }else{
-        fs.writeFileSync($path , logs ,function(err){
-            if(err){ console.log( chalk.red("write file error")) ; throw err }
-        })
+        // TODO ...
+        writeLog($path , logs )
     }
-
-    // if(logs){
-    //     logs += Date.now(Date())
-    //     // fs.writeFileSync($path , logs );
-    // }
 }
 
 function writeLog(path , logs){
-    if(logs) fs.writeFileSync(path , logs );
+    if(logs) fs.appendFileSync(path ,  '\n' + Date() + "=======================\n" + logs + '\n' );
 }
 
 module.exports = runLog ;

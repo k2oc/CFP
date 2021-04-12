@@ -10,7 +10,7 @@ const preConfig = require("../.prettierrc.json")
 const checkFile = require("./checkFile")
 const chalk = require("chalk")
 
-const rwFile = function(filePath = "", config = {}){
+const rwFile = function(filePath = ""){
     const text = fs.readFileSync(filePath, "utf8");
     if(checkFile(text)){
       console.log(chalk.bgGray(filePath + " format complete "))
