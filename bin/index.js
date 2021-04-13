@@ -16,7 +16,7 @@ const chalk = require('chalk')
 const runLog = require('../libs/runLog')
 /**
  * @param -s 需要格式化文件路径 
- * @param -p  prettier配置文件 暂支持 json  
+ * @param -p  prettier配置文件 暂支持 json  https://prettier.io/docs/en/configuration.html
  */
 program
 .option("-s")
@@ -52,12 +52,7 @@ if($path){
     console.log(chalk.red("path error"+ $path))
 }
 
-
-
-
 console.log(chalk.green("Complete..."))
 
-// console.log(a)
 
 
-// rwFile('/Users/chenli/kingsoft/chenli7/ksc-security-cfp/develop/mixins/dialog.js')
