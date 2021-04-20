@@ -2,6 +2,7 @@
  * https://prettier.io/docs/en/options.html#parser
  * @param {*} type 
  */
+
 module.exports = function( type = ""){
     let parser = {
         ts:"typescript",
@@ -16,9 +17,8 @@ module.exports = function( type = ""){
         vue:"vue", // parse as html 
         yaml:"yaml",
         jade: 'html',
-        // styl: "css",
+        styl: "css",
         sass:'css',
-        // js: "babel"
         
     };
     return parser[type] || ''

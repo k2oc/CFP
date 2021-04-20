@@ -5,15 +5,15 @@
  */
 const fs =  require('fs')
 const prettier   = require('prettier')
-const  { parse , hasPragma , locEnd , locStart , preprocess , Plugin}  = require("prettier")
+const  { parse , hasPragma , locEnd , locStart , preprocess }  = require("prettier")
 const _  = require('lodash')
 const preConfig = require("../.prettierrc.json")
 const checkFile = require("./checkFile")
 const chalk = require("chalk")
 const fileType = require("../plugin/fileType")
-// const pugPlugin = require("@prettier/plugin-pug")
-const process =  require('process')
-
+const _plugin = require("../plugin/index") ;
+const pugPlugin = require("@prettier/plugin-pug")
+const { pull } = require('lodash')
 const rwFile = function(filePath = "", config ={}){
     const text = fs.readFileSync(filePath, "utf8");
     prettier.resolveConfig( filePath ).then ( function(options){
@@ -25,41 +25,48 @@ const rwFile = function(filePath = "", config ={}){
       //   plugins: ["./foo-plugin"],
       // });
 
-      // const txt = prettier.format("lodash ( )", {
-      //   parser(text, { babel }) {
-      //     const ast = babel(text);
-      //     ast.program.body[0].expression.callee.name = "_";
-      //     return ast;
-      //   },
-      // });
-
       // console.log(txt)
       let $file = fileType(filePath) 
       if( $file ){
-        if($file.parser == -1 ){
-          let suffix = $file.suffix ;
-          $options.parser = 'babel'
-          if(suffix == "pug"){
-            // const res = prettier.format( text , {
-            //   plugins: [ pugPlugin ]
-            // })
-            // console.log("pug ---- ",res)
-            // fs.writeFileSync(filePath,res) 
-          }
-          console.log("suffix" , suffix)
-          if(suffix == "styl"){
-            $options.parser = 'css'
-            const res = prettier.format( text , $options )
-            // fs.writeFileSync(filePath,res) 
-          }
+        let suffix = $file.suffix ;
+        if(suffix  == 'pug')
+          $options.parser = 'pug'
+        console.log($options)  
+        const res = prettier.format( text , $options )
+       
           
+        fs.writeFileSync(filePath,res) 
+        if($file.parser == -1 ){
+          // $options.parser = 'babel'
+
+          // if( suffix === 'styl'){
+          //   // console.log("********************")
+          //   // $options.parser = 'postcss-styl'
+          //   // console.log( path.resolve("./node_modules/CFP/node_modules/postcss-styl"))
+          //   // $options.plugins  = ["./node_modules/CFP/node_modules/postcss-styl"]
+
+          // }else if( suffix === 'pug'){
+          //   console.log("pugPlugin.parsers",pugPlugin.parsers.pug)
+          //   const res = prettier.format( text , {
+          //     parser: pugPlugin.plugin.astFormat
+          //   })
+          //   fs.writeFileSync(filePath,res) 
+          // }
+
+
+          // const res = prettier.format( text , Object.assign ($options , options ))
+          // fs.writeFileSync(filePath,res) 
         }else{
-          const res = prettier.format( text , Object.assign ($options , options ))
-          fs.writeFileSync(filePath,res) 
+
+
+        
+          // console.log( " Object.assign ($options , options )-------", Object.assign ($options , options ) )
+        
         }
        
       }else{
-      
+
+        
       }
       
   })

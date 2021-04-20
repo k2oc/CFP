@@ -11,7 +11,7 @@ function fileType( path = "" ){
     if(splitFile(path)){
         result = allBabel(splitFile(path))
         if(result)
-            return { parser : result }
+            return { parser : result, suffix : splitFile(path) , path }
         else 
             return { parser : -1 , suffix : splitFile(path) , path}
     }else{

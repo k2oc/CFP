@@ -16,5 +16,32 @@
     "tabWidth": 2,
     "trailingComma": "es5",
     "useTabs": false,
-    "vueIndentScriptAndStyle": false
+    "vueIndentScriptAndStyle": false,
+    "overrides":[
+    {
+      "files": "*.{css,sass,scss,less}",
+      "options": {
+        "parser": "css",
+        "tabWidth": 2
+      }
+    },
+    {
+      "files": "*.ts",
+      "options": {
+        "parser": "typescript"
+      }
+    },
+    {
+      "files": "*.pug",
+      "options": {
+        "parser": "@prettier/plugin-pug"
+      }
+    },
+    {
+      "files": "*.styl",
+      "options": {
+        "parser": "postcss-styl"
+      }
+    }
+    ]
   }
