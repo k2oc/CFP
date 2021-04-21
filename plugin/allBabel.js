@@ -19,6 +19,7 @@ module.exports = function( type = ""){
         jade: 'html',
         styl: "css",
         sass:'css',
+        pug:'pug'
         
     };
     return parser[type] || ''

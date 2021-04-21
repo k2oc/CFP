@@ -12,7 +12,7 @@ const prettier = require('prettier')
 const preConfig = require("../.prettierrc.json")
 const checkFile = function(source ,options = {}){
     if(source){ // { semi: false, parser: 'babylon' } 
-       return prettier.check( source ,Object.assign(preConfig,  options  ,  { semi: false, parser: 'babel' } ) ) 
+       return prettier.check( source , options ) 
     }else{
         console.log("file error")
         return false  

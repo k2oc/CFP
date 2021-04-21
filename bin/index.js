@@ -52,7 +52,6 @@ if($path){
     console.log(chalk.red("path error"+ $path))
 }
 
-console.log(chalk.green("Complete..."))
 
 
 
