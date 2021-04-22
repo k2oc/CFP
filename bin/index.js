@@ -6,7 +6,7 @@ const _ = require("lodash");
 const fs = require("fs");
 const globby = require("globby");
 const reqModule = require("../libs/reqModule");
-const {exec} = require("child_process")
+const {exec} = require("../libs/utils")
 const prettier = require('prettier')
 const stat = require("../libs/stat")
 const rwFile = require("../libs/rwFile")
@@ -15,12 +15,15 @@ const minimist = require('minimist')
 const chalk = require('chalk')
 const runLog = require('../libs/runLog')
 /**
- * @param -s 需要格式化文件路径 
- * @param -p  prettier配置文件 暂支持 json  https://prettier.io/docs/en/configuration.html
+ * @param -d 需要格式化文件路径 
+ * @param -c cli执行
+ * @param -p  prettier配置文件 暂支持 json  https://prettier.io/docs/en/configuration.html  
+ * 
  */
 program
-.option("-s")
-.option("-p")     
+.option("-d , --directory")
+.option("-p , --path")   // --find-config-path and --config
+.option('-c , --cli')  // 执行 CLI
 // .option("-ig , --ingore")
 .parse(process.argv);
 
@@ -29,28 +32,53 @@ let $2 = minimist(process.argv.slice(2))
 const options = program.opts();
 let $path = '' , $config = {};
 if(options.s){
-    $path =  path.join( path.resolve($1) ,$2["s"])
+    $path =  path.join( path.resolve($1) ,$2["d"])
 }
 if(options.p){
     $config = Object.assign($2["p"])
 }
-if($path){
-    if(loop($path).length == 0 ){
-        console.log(chalk.red("path error"+ $path))
-        return
-    }
-    _.forEach( loop($path) ,async function(file) {
-        try {
-            await rwFile(file , $config )
-        } catch (error) {
-            runLog(error);
-            console.log(chalk.red(error))
 
+(async ()=>{
+    if(options.cli){
+        let $cli = path.resolve("./" , 'node_modules/CFP/node_modules/prettier/bin-prettier.js') ;
+        let isSupport =  process.versions.node  > '10.13.0' 
+        if(!isSupport){
+            console.log(chalk.red("Node Error : prettier requires at least version 10.13.0 of Node, please upgrade"))
+            console.log(chalk.red("Node Current Version : " + process.versions.node  ))
+            return ; 
         }
-    })
-}else{
-    console.log(chalk.red("path error"+ $path))
-}
+        if (fs.existsSync($cli)){
+            let _s =  $2['d'] || '.'
+            console.log(chalk.green('start fomart code'))
+            await exec(`node ${$cli} --check ${_s} --write ${_s}`)
+            console.log(chalk.green('end fomart code'))
+        }else{
+            console.log(chalk.red("CFP error"))
+        }
+    
+    }else{
+    
+        if($path){
+            if(loop($path).length == 0 ){
+                console.log(chalk.red("path error"+ $path))
+                return
+            }
+            _.forEach( loop($path) ,async function(file) {
+                try {
+                    await rwFile(file , $config )
+                } catch (error) {
+                    runLog(error);
+                    console.log(chalk.red(error))
+        
+                }
+            })
+        }else{
+         
+            console.log(chalk.red("path error"+ $path))
+        }
+    
+    }
+})()
 
 
 
