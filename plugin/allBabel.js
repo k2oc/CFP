@@ -17,7 +17,7 @@ module.exports = function( type = ""){
         vue:"vue", // parse as html 
         yaml:"yaml",
         jade: 'html',
-        styl: "css",
+        styl: "scss",
         sass:'css',
         pug:'pug'
         

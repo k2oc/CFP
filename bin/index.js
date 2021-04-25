@@ -21,9 +21,9 @@ const runLog = require('../libs/runLog')
  * 
  */
 program
-.option("-d , --directory")
-.option("-p , --path")   // --find-config-path and --config
-.option('-c , --cli')  // 执行 CLI
+.option("-d , --directory")  //  default: . 
+.option("-p , --path")   // --find-config-path and --config 
+.option('-c , --cli')  // 执行 CLI  default: false 
 // .option("-ig , --ingore")
 .parse(process.argv);
 
@@ -31,15 +31,15 @@ let $1 = path.resolve ( process.cwd("./") )
 let $2 = minimist(process.argv.slice(2))
 const options = program.opts();
 let $path = '' , $config = {};
-if(options.s){
+if(options.directory){
     $path =  path.join( path.resolve($1) ,$2["d"])
 }
-if(options.p){
+if(options.path){
     $config = Object.assign($2["p"])
 }
 
 (async ()=>{
-    if(options.cli){
+   if(options.cli){
         let $cli = path.resolve("./" , 'node_modules/CFP/node_modules/prettier/bin-prettier.js') ;
         let isSupport =  process.versions.node  > '10.13.0' 
         if(!isSupport){
