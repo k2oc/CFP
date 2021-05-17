@@ -5,7 +5,6 @@
  */
 const fs =  require('fs')
 const prettier   = require('prettier')
-const  { parse , hasPragma , locEnd , locStart , preprocess }  = require("prettier")
 const _  = require('lodash')
 const preConfig = require("../.prettierrc.json")
 const checkFile = require("./checkFile")
@@ -22,7 +21,7 @@ const rwFile = function(filePath = "", config ={}){
       if( $file ){
         let suffix = $file.suffix ;
         if( checkFile( text ,  Object.assign ($options , $file ) )){
-          console.log(chalk.green( "已完成格式化"+filePath))
+          console.log(chalk.green( "已格式化"+filePath))
           
         }else{
           console.log(chalk.green("开始格式化" + filePath ))
@@ -30,8 +29,10 @@ const rwFile = function(filePath = "", config ={}){
             $options.parser = 'babel'
           }
           try{
+
            const res  = prettier.format( text , Object.assign ($options , $file ) )  
            fs.writeFileSync(filePath,res) 
+           console.log(chalk.green("完成格式化" + filePath ))
           }catch(e){
             console.log(e)
           }  

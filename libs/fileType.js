@@ -5,7 +5,7 @@
  */
 
 const fs = require("fs");
-const allBabel = require('./allBabel')
+const allBabel = require('../plugin/allBabel')
 function fileType( path = "" ){
     let result = ""
     if(splitFile(path)){

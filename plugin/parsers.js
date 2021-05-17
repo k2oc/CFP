@@ -2,7 +2,7 @@ const { parse , hasPragma , locStart , locEnd , preprocess }  = require('prettie
 module.exports =  { 
     "prettier-pug":{
         parse , 
-        astFormat: '@prettier/plugin-pug',
+        astFormat: 'stylelint-prettier',
         hasPragma , locStart , locEnd , preprocess
     }
 

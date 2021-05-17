@@ -17,13 +17,14 @@ module.exports = function( type = ""){
         vue:"vue", // parse as html 
         yaml:"yaml",
         jade: 'html',
-        styl: "scss",
+        styl: "stylelint-prettier",
         sass:'css',
         pug:'pug'
         
     };
     return parser[type] || ''
 }
+//   "styl":"prettier-style"
 
 function parseTemplate(type){
 

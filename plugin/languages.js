@@ -1,7 +1,7 @@
 
 module.exports = [
     {
-        name: "pug-parse",
-        parsers: ["prettier-pug"]
+        name: "styl-parse",
+        parsers: ["stylelint-prettier"]
     }
-]; ;
+];

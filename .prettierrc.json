@@ -6,5 +6,21 @@
   "pugAttributeSeparator":"always",
   "pugClosingBracketPosition":"new-line",
   "pugCommentPreserveSpaces":"keep-all",
-  "pugSortAttributes":"as-is"
+  "pugSortAttributes":"as-is",
+  "tslintIntegration":"false" ,
+  "stylelintIntegration" : "false",
+  "arrowParens": "always",
+  "bracketSpacing": true,
+  "embeddedLanguageFormatting": "auto",
+  "htmlWhitespaceSensitivity": "css",
+  "insertPragma": false,
+  "jsxBracketSameLine": false,
+  "jsxSingleQuote": false,
+  "proseWrap": "preserve",
+  "quoteProps": "as-needed",
+  "requirePragma": false,
+  "tabWidth": 2,
+  "trailingComma": "es5",
+  "useTabs": false,
+  "vueIndentScriptAndStyle": false
 }
