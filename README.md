@@ -8,21 +8,10 @@ $ npm install ksr-cfp
 
 ## Usage
 ---
-```js
-script:{
-    "format": "ksr-cfp -d ./src"
-}
-```
-or 
+> prettier requires at least version <span style="color:#ecda7a;font-size:16px">10.13.0</span> of Node
+ 
 ```Console
-$ ksr-cfp -d ./src
-```
-
-or use CLI
-
-```Console
-
-$ ksr-cfp -d ./src -c true
+$ ksr-cfp -d FilePath -p .prettierrc.json -c true 
 ```
 
 ## Options
@@ -35,8 +24,42 @@ $ ksr-cfp -d ./src -c true
 
 <br/>
 
-## Support 
+## Format Configuration Schema
+---
+```Json
+{
+  "parser": "babel",
+  "printWidth": 120, 
+  "semi": true, 
+  "singleQuote": true,
+  "pugAttributeSeparator":"always",
+  "pugClosingBracketPosition":"new-line",
+  "pugCommentPreserveSpaces":"keep-all",
+  "pugSortAttributes":"as-is",
+  "tslintIntegration":"false" ,
+  "stylelintIntegration" : "false",
+  "arrowParens": "always",
+  "bracketSpacing": true,
+  "embeddedLanguageFormatting": "auto",
+  "htmlWhitespaceSensitivity": "css",
+  "insertPragma": false,
+  "jsxBracketSameLine": false,
+  "jsxSingleQuote": false,
+  "proseWrap": "preserve",
+  "quoteProps": "as-needed",
+  "requirePragma": false,
+  "tabWidth": 2,
+  "trailingComma": "es5",
+  "useTabs": false,
+  "vueIndentScriptAndStyle": false
+}
+```
 
+> 1、 [more options >> ](https://prettier.bootcss.com/docs/options.html)
+
+> 2、[All Schema >>](http://json.schemastore.org/prettierrc)
+
+## Support 
 ---
 | File Suffix or Valid options| Plugin |
 | :---: | :---| 
@@ -55,3 +78,5 @@ $ ksr-cfp -d ./src -c true
 <br/>
 
 ## Flow
+
+![](./static/flow.png)
