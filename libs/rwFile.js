@@ -9,7 +9,7 @@ const _  = require('lodash')
 const preConfig = require("../.prettierrc.json")
 const checkFile = require("./checkFile")
 const chalk = require("chalk")
-const fileType = require("../plugin/fileType")
+const fileType = require("./fileType")
 const _plugin = require("../plugin/index") ;
 
 const rwFile = function(filePath = "", config ={}){
