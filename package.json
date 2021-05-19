@@ -10,7 +10,7 @@
 		"test": "echo \"Error: no test specified\" && exit 1"
 	},
 	"bin": {
-		"CFP": "bin/index.js"
+		"ksr-cfp": "bin/index.js"
 	},
 	"repository": {
 		"type": "git",
