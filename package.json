@@ -1,6 +1,6 @@
 {
 	"name": "ksr-cfp",
-	"version": "0.0.1",
+	"version": "0.0.2",
 	"description": "Code Format Plugin",
 	"main": "./bin/index.js",
 	"engines": {
