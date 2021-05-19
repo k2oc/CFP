@@ -10,16 +10,13 @@ const preConfig = require("../.prettierrc.json")
 const checkFile = require("./checkFile")
 const chalk = require("chalk")
 const fileType = require("./fileType")
-const _plugin = require("../plugin/index") ;
 
 const rwFile = function(filePath = "", config ={}){
     const text = fs.readFileSync(filePath, "utf8");
     prettier.resolveConfig( filePath ).then ( function(options){
       const $options = Object.assign( preConfig , fileType(filePath))
-
       let $file = fileType(filePath) 
       if( $file ){
-        let suffix = $file.suffix ;
         if( checkFile( text ,  Object.assign ($options , $file ) )){
           console.log(chalk.green( "已格式化"+filePath))
           
@@ -29,7 +26,6 @@ const rwFile = function(filePath = "", config ={}){
             $options.parser = 'babel'
           }
           try{
-
            const res  = prettier.format( text , Object.assign ($options , $file ) )  
            fs.writeFileSync(filePath,res) 
            console.log(chalk.green("完成格式化" + filePath ))
