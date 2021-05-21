@@ -27,6 +27,7 @@ let $1 = path.resolve ( process.cwd("./") )
 let $2 = minimist(process.argv.slice(2))
 const options = program.opts();
 let $path = '' , $config = {};
+
 if(options.directory){
     $path =  path.join( path.resolve($1) ,$2["d"])
 }
@@ -63,7 +64,7 @@ if(options.path){
                 try {
                     await rwFile(file , $config )
                 } catch (error) {
-                    runLog(error);
+                    // runLog(error);
                     console.log(chalk.red(error))
         
                 }
