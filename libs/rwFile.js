@@ -17,21 +17,15 @@ const rwFile = function(filePath = "", config ={}){
       const $options = Object.assign( preConfig , fileType(filePath))
       let $file = fileType(filePath) 
       if( $file ){
-        console.log("kkkkkkk" )
-
         if( checkFile( text ,  Object.assign ($options , $file ) )){
           console.log(chalk.green( "已格式化"+filePath))
         }else{
           console.log(chalk.green("开始格式化" + filePath ))
           if($file.parser == -1 ){
-            console.log("-aaaaa------")
-            if( $file.suffix == 'styl'){
-              console.log(222222)
-            }
             $options.parser = 'babel'
           }
           try{
-           const res  = prettier.formatWithCursor( text , Object.assign ($options , $file ) )  
+           const res  = prettier.format( text , Object.assign ($options , $file ) )  
            fs.writeFileSync(filePath,res) 
            console.log(chalk.green("完成格式化" + filePath ))
           }catch(e){
