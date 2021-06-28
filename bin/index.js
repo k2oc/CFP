@@ -37,7 +37,7 @@ if(options.path){
 
 (async ()=>{
    if(options.cli){
-        let $cli = path.resolve("./" , 'node_modules/CFP/node_modules/prettier/bin-prettier.js') ;
+        let $cli = path.resolve("./" , 'node_modules/ksr-cfp/node_modules/prettier/bin-prettier.js') ;
         let isSupport =  process.versions.node  > '10.13.0' 
         if(!isSupport){
             console.log(chalk.red("Node Error : prettier requires at least version 10.13.0 of Node, please upgrade"))
