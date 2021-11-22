@@ -5,11 +5,11 @@
  */
 
 const fs = require("fs");
-const allBabel = require('../plugin/allBabel')
+const supportedFiles = require('./supportedFiles')
 function fileType( path = "" ){
     let result = ""
     if(splitFile(path)){
-        result = allBabel(splitFile(path))
+        result = supportedFiles(splitFile(path))
         if(result)
             return { parser : result, suffix : splitFile(path) , path }
         else 

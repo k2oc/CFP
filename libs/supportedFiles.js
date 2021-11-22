@@ -3,7 +3,7 @@
  * @param {*} type 
  */
 
-module.exports = function( type = ""){
+ module.exports = function( type = ""){
     let parser = {
         ts:"typescript",
         css:"css",
@@ -16,16 +16,11 @@ module.exports = function( type = ""){
         html:"html",
         vue:"vue", // parse as html 
         yaml:"yaml",
-        jade: 'html',
-        sass:'css',
-        pug:'pug'
-        
+        jade: 'pug',
+        pug:'pug',
+        js: 'babel' 
     };
-    return parser[type] || ''
+    return parser[type]
 }
 //   "styl":"prettier-style"
-
-function parseTemplate(type){
-
-}
 
