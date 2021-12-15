@@ -31,6 +31,7 @@
 		"@prettier/plugin-pug": "^1.13.5",
 		"chalk": "^4.1.0",
 		"commander": "^7.2.0",
+		"dayjs": "^1.10.7",
 		"globby": "^11.0.3",
 		"lodash": "^4.17.21",
 		"minimist": "^1.2.5",

@@ -10,22 +10,21 @@
 const fs = require('fs')
 const path = require('path')
 const errorLog = "./error.log"
-const outLog = "./out.log"
+const outLog = "./access.log"
 const process = require('process')
 const chalk = require('chalk')
+const dayjs = require('dayjs')
 const runLog = function( logs = "", type = 'error'){
     let $type = type == 'error' ? errorLog : outLog 
     let $path = path.join(path.resolve ( process.cwd("../../")) , $type ) 
-    if(fs.existsSync($path)){
-        writeLog($path , logs )
-    }else{
-        // TODO ...
-        writeLog($path , logs )
-    }
+    writeLog($path , logs )
+
 }
 
-function writeLog(path , logs){
-    if(logs) fs.appendFileSync(path ,  '\n' + Date() + "=======================\n" + logs + '\n' );
+function writeLog(path , logs){ 
+    var out =   '\n' + dayjs().format("YYYY-MM-DD HH:mm:ss") + ' ==> ' + logs ; 
+    if(logs) fs.appendFileSync( path , out );
+    else fs.writeFileSync(path , out , {encoding:'utf8',flag:'w'})
 }
 
 module.exports = runLog ;
