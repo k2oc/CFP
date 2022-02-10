@@ -11,12 +11,12 @@ function fileType( path = "" ){
     if(splitFile(path)){
         result = supportedFiles(splitFile(path))
         if(result)
-            return { parser : result, suffix : splitFile(path) , path }
+            return { parser : result, suffix : splitFile(path) ,   filePath : path }
         else 
-            return { parser : -1 , suffix : splitFile(path) , path}
+            return { parser : -1 , suffix : splitFile(path) ,   filePath : path }
     }else{
         console.log("当前文件路径不是标准文件 ， 例如 1.txt " +  path ) 
-        return { parser : -1 , suffix : splitFile(path) , path}
+        return { parser : -1 , suffix : splitFile(path)  , filePath : path}
     } 
 };
 

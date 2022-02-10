@@ -11,16 +11,18 @@
         less:"less" ,
         json:"json" ,
         json5:"json5",
-        graphql:"graphql",
+        graphql:"graphql",  // mjs
         md:"markdown",
         html:"html",
-        vue:"vue", // parse as html 
+        vue:"vue", // parse as html   tmScope: 'text.html.vue',
         yaml:"yaml",
         jade: 'pug',
         pug:'pug',
-        js: 'babel' 
+        js: 'babel',
+        sass: 'scss',
+        styl: 'stylus'
     };
-    return parser[type]
+    return parser[type] || type
 }
 //   "styl":"prettier-style"
 

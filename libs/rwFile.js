@@ -8,45 +8,38 @@ const prettier   = require('prettier')
 const _  = require('lodash')
 const preConfig = require("../.prettierrc.json")
 const checkFile = require("./checkFile")
-const chalk = require("chalk")
 const fileType = require("./fileType")
 const runLog = require('./runLog')
-
-const rwFile = function(filePath = "", config ={}){
-    const text = fs.readFileSync(filePath, "utf8");
-    prettier.resolveConfig( filePath ).then ( async function(options){
-      const $options = Object.assign( preConfig , fileType(filePath) , config )
-      let $file = fileType(filePath) 
+const rwFile = async  function(filePath = "", config ={}) {
+    const text = fs.readFileSync(filePath, {encoding : 'utf-8' , flag :'r+'} );
+    let $file = fileType(filePath) 
+    prettier.resolveConfig( filePath ).then ( async function(){
+      const $options = Object.assign( preConfig ,$file , config )
       if( $file ){
         if( checkFile( text ,  Object.assign ($options , $file ) )){
-          var completeInfo =  "已格式化 "+filePath
-          console.log(chalk.green( completeInfo ))
-          runLog( completeInfo , "success" )
+          runLog(  "Completed "+filePath , "success" )
         }else{
           const fileParse = prettier.getFileInfo.sync(filePath ) ;
+          console.log( fileParse , filePath )
           if( fileParse && fileParse.inferredParser){
             try {
-              var info = "格式化完成 " + filePath ;
               // const res  = prettier.format( text , Object.assign ($options , $file ) ) 
               const res =  await handleFormat( text , Object.assign ($options , $file )  )
               fs.writeFileSync(filePath,res) 
-              console.log( chalk.greenBright (info ))
-              runLog( info , "success" )
+              runLog( filePath , "success" )
             } catch (error) {
-              console.log( chalk.red( " error => " + error ))
               runLog( error )
             }
           }else{
-            const error = "该文件类型暂未支持，功能开发中...  "  + filePath 
-            console.log(chalk.redBright(error))
-            runLog( error )
+            runLog( "该文件类型暂未支持，功能开发中...  "  + filePath  )  
           }
         }
       }else{
-        console.log( chalk.red("非法路径"))
+        runLog("非法路径");
       }
-  })
-
+   }).catch( error =>{ 
+    runLog( error )
+  }) 
 }
 
 function handleFormat( text , options ){
@@ -56,7 +49,7 @@ function handleFormat( text , options ){
     } catch (error) {
       reject( error )
     }
-  }).catch( e => console.log("error ", e) )
+  }).catch( e => console.log("Error ", e) )
 }
 
 module.exports = rwFile
