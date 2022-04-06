@@ -19,6 +19,5 @@ function loop(jsonPath){
     }
     resolveFile(jsonPath);
     return jsonFiles
-    // console.log(jsonFiles);
 }
 module.exports = loop

@@ -23,55 +23,44 @@ program
 // .option("-ig , --ingore")
 .parse(process.argv);
 
-let $1 = path.resolve ( process.cwd("./") )
-let $2 = minimist(process.argv.slice(2))
+let rootPath = path.resolve ( process.cwd("./") )
+let argv = minimist(process.argv.slice(2))
 const options = program.opts();
-let $path = '' , $config = {};
+let filePath = '' , config = {};
 
 if(options.directory){
-    $path =  path.join( path.resolve($1) ,$2["d"])
+    filePath =  path.join( path.resolve(rootPath) ,argv["d"])
 }
 if(options.path){
-    $config = Object.assign($2["p"])
+    config = Object.assign(argv["p"])
 }
 
 (async ()=>{
    if(options.cli){
-        let $cli = path.resolve("./" , 'node_modules/ksr-cfp/node_modules/prettier/bin-prettier.js') ;
-        let isSupport =  process.versions.node  > '10.13.0' 
-        if(!isSupport){
-            console.log(chalk.red("Node Error : prettier requires at least version 10.13.0 of Node, please upgrade"))
-            console.log(chalk.red("Node Current Version : " + process.versions.node  ))
-            return ; 
-        }
-        if (fs.existsSync($cli)){
-            let _s =  $2['d'] || '.'
+        let prettierCLI = path.resolve("./" , 'node_modules/ksr-cfp/node_modules/prettier/bin-prettier.js') ;
+        if (fs.existsSync(prettierCLI)){
+            let directory =  argv['d'] || '.'
             console.log(chalk.green('start fomart code'))
-            await exec(`node ${$cli} --check ${_s} --write ${_s}`)
+            await exec(`node ${prettierCLI} --check ${directory} --write ${directory}`)
             console.log(chalk.green('end fomart code'))
         }else{
             console.log(chalk.red("CFP error"))
         }
-    
     }else{
-    
-        if($path){
-            if(loop($path).length == 0 ){
-                console.log(chalk.red("path error"+ $path))
+        if(filePath){
+            if(loop(filePath).length == 0 ){
+                console.log(chalk.red("path error"+ filePath))
                 return
             }
-            _.forEach( loop($path) ,async function(file) {
+            _.forEach( loop(filePath) ,async function(file) {
                 try {
-                    await rwFile(file , $config )
+                     await rwFile(file , config )
                 } catch (error) {
-                    // runLog(error);
                     console.log(chalk.red(error))
-        
                 }
             })
         }else{
-         
-            console.log(chalk.red("path error"+ $path))
+            console.log(chalk.red("path error"+ filePath))
         }
     
     }

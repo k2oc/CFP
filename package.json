@@ -2,7 +2,7 @@
 	"name": "ksr-cfp",
 	"version": "0.0.6",
 	"description": "Code Format Plugin",
-	"main": "./bin/index.js",
+	"main": "index.js",
 	"engines": {
 		"node": ">= 10.13.0 "
 	},
@@ -10,7 +10,7 @@
 		"test": "echo \"Error: no test specified\" && exit 1"
 	},
 	"bin": {
-		"ksr-cfp": "bin/index.js"
+		"ksr-cfp": "index.js"
 	},
 	"repository": {
 		"type": "git",
@@ -47,6 +47,8 @@
 	},
 	"dependencies": {
 		"@prettier/plugin-pug": "^1.13.5",
+		"mime": "^3.0.0",
+		"please-upgrade-node": "^3.2.0",
 		"prettier": "^2.2.1",
 		"prettier-eslint": "^13.0.0",
 		"prettier-stylelint": "^0.4.2"
