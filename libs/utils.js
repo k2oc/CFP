@@ -10,7 +10,7 @@ const exec =  function( command ){
                 resolve(stdout)
             }
         })
-        //  stdin: Writable | null;
+        // stdin: Writable | null;
         // stdout: Readable | null;
         // stderr: Readable | null;
         comm.stdout.pipe(process.stdout)

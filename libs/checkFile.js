@@ -11,7 +11,7 @@
 const prettier = require('prettier')
 const preConfig = require("../.prettierrc.json")
 const checkFile = function(source ,options = {}){
-    if(source && options.parser != -1){
+    if(source){
        return prettier.check( source , Object.assign( preConfig , options )) 
     }else{
         return false  

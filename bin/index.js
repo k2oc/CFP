@@ -5,7 +5,7 @@ const path = require("path");
 const _ = require("lodash");
 const fs = require("fs");
 const {exec} = require("../libs/utils")
-const rwFile = require("../libs/rwFile")
+const main = require("../libs/main")
 const loop = require("../libs/loop")
 const minimist = require('minimist')
 const chalk = require('chalk')
@@ -29,7 +29,8 @@ const options = program.opts();
 let filePath = '' , config = {};
 
 if(options.directory){
-    filePath =  path.join( path.resolve(rootPath) ,argv["d"])
+    // filePath =  path.join( path.resolve(rootPath) ,argv["d"])
+    filePath  = argv['d'];
 }
 if(options.path){
     config = Object.assign(argv["p"])
@@ -54,7 +55,7 @@ if(options.path){
             }
             _.forEach( loop(filePath) ,async function(file) {
                 try {
-                     await rwFile(file , config )
+                     await main(file , config )
                 } catch (error) {
                     console.log(chalk.red(error))
                 }
